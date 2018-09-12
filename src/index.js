@@ -1,40 +1,35 @@
 class Sorter {
-    
-  constructor() {
-      
-    this.arr = [];
-      
-  }
 
-  add(element) {
-      
-    this.arr.push(element);
-      
-  }
+    constructor() {
 
-  at(index) {
-    
-      return  this.arr[index];
-  }
+        this.arr = [];
 
-  get length() {
-    
-      return this.arr.length;
-      
-  }
+    }
 
-  toArray() {
-    
-      return this.arr;
-      
-  }
+    add(element) {
 
-  sort(indices) {
-      
-      let cut = [],
-          min = Math.min.apply(null, indices);
-      
-      function bubbleSort(a) {
+        this.arr.push(element);
+
+    }
+
+    at(index) {
+
+        return this.arr[index];
+    }
+
+    get length() {
+
+        return this.arr.length;
+
+    }
+
+    toArray() {
+
+        return this.arr;
+
+    }
+
+    bubbleSort(a) {
 
         for (let i = 0, len = a.length; i < len; i++) {
 
@@ -51,34 +46,32 @@ class Sorter {
 
                     a.splice(current, 0, copyPrev);
                 }
-
             }
         }
-
     }
-      
-      for(let i = 0; i < indices.length; i++){
-          
-          cut.push(this.arr[indices[i]]);
-          
-      }
-      
-       bubbleSort(cut);
-       bubbleSort(indices);
-      
-      
-      for(let i = 0; i < indices.length; i++){
-          
-          this.arr[indices[i]] = cut[i];
-          
-      }
-      
-      
-  }
 
-  setComparator(compareFunction) {
-    // your implementation
-  }
+    sort(indices) {
+
+        let cut = [];
+
+        for (let i = 0; i < indices.length; i++) {
+
+            cut.push(this.arr[indices[i]]);
+        }
+
+        this.bubbleSort(cut);
+        
+        this.bubbleSort(indices);
+
+        for (let i = 0; i < indices.length; i++) {
+
+            this.arr[indices[i]] = cut[i];
+        }
+    }
+
+    setComparator(compareFunction) {
+        // your implementation
+    }
 }
 
 module.exports = Sorter;

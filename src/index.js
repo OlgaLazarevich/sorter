@@ -4,6 +4,13 @@ class Sorter {
 
         this.arr = [];
 
+        this.compareNumbers = function (a, b) {
+            return a - b;
+        }
+        
+        this.compare = function (a, b) {
+            return a - b;
+        }
     }
 
     add(element) {
@@ -29,27 +36,6 @@ class Sorter {
 
     }
 
-    bubbleSort(a) {
-
-        for (let i = 0, len = a.length; i < len; i++) {
-
-            for (let i = 1, len = a.length; i < len; i++) {
-
-                let current = i,
-                    prev = i - 1;
-
-                if (a[prev] > a[current]) {
-
-                    let copyPrev = a[prev];
-
-                    a.splice(prev, 2, a[current]);
-
-                    a.splice(current, 0, copyPrev);
-                }
-            }
-        }
-    }
-
     sort(indices) {
 
         let cut = [];
@@ -59,9 +45,9 @@ class Sorter {
             cut.push(this.arr[indices[i]]);
         }
 
-        this.bubbleSort(cut);
-        
-        this.bubbleSort(indices);
+        cut.sort(this.compare);
+
+        indices.sort(this.compareNumbers);
 
         for (let i = 0; i < indices.length; i++) {
 
@@ -70,7 +56,8 @@ class Sorter {
     }
 
     setComparator(compareFunction) {
-        // your implementation
+
+        this.compare = compareFunction;
     }
 }
 
